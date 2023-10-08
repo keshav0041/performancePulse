@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+    <title>Student Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="profile">
+                <img src="{% static 'images/photo.png' %}" alt="Student Photo">
+                <h1>Keshav Vaishnav</h1>
+                <p class="semester-info">Semester: 5</p>
+                <p class="contact-info">Contact: john.doe@example.com</p>
+            </div>
+            <div class="info">
+                <div class="card">
+                    <h2>Attendance</h2>
+                    <p class="info-text">Overall: 85%</p>
+                </div>
+                <div class="card">
+                    <h2>CGPA</h2>
+                    <p class="info-text">Current: 8.75</p>
+                </div>
+                <div class="card">
+                    <h2>Performance</h2>
+                    <p class="info-text">Excellent</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="semester">
+            <h2>Semester 1</h2>
+            <p class="semester-info">CGPA: 8.75</p>
+            <table>
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks</th>
+                    <th>Attendance</th>
+                </tr>
+                <tr>
+                    <td>Mathematics</td>
+                    <td>91</td>
+                    <td>76%</td>
+                </tr>
+                <!-- Add more rows for other subjects -->
+                <tr>
+                    <td>C Programming</td>
+                    <td>98</td>
+                    <td>82%</td>
+                </tr>
+                <tr>
+                    <td>Java</td>
+                    <td>93</td>
+                    <td>97%</td>
+                </tr>
+                <tr>
+                    <td>Data Structures</td>
+                    <td>95</td>
+                    <td>88%</td>
+                </tr>
+                <tr>
+                    <td>PHP</td>
+                    <td>92</td>
+                    <td>78%</td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

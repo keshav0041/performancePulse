@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @charset "UTF-8";
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+        
+        body {
+          font-family: 'Open Sans', sans-serif;
+          font-weight: 300;
+          line-height: 1.42em;
+          color:#A7A1AE;
+          background-color:#1F2739;
+        }
+        
+        h1 {
+          font-size:3em; 
+          font-weight: 300;
+          line-height:1em;
+          text-align: center;
+          color: #4DC3FA;
+        }
+        
+        h2 {
+          font-size:1em; 
+          font-weight: 300;
+          text-align: center;
+          display: block;
+          line-height:1em;
+          padding-bottom: 2em;
+          color: #FB667A;
+        }
+        
+        h2 a {
+          font-weight: 700;
+          text-transform: uppercase;
+          color: #FB667A;
+          text-decoration: none;
+        }
+        
+        .blue { color: #185875; }
+        .yellow { color: #FFF842; }
+        
+        .container th h1 {
+            font-weight: bold;
+            font-size: 1em;
+          text-align: left;
+          color: #185875;
+        }
+        
+        .container td {
+            font-weight: normal;
+            font-size: 1em;
+          -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+             -moz-box-shadow: 0 2px 2px -2px #0E1119;
+                  box-shadow: 0 2px 2px -2px #0E1119;
+        }
+        
+        .container {
+            text-align: left;
+            overflow: hidden;
+            width: 80%;
+            margin: 0 auto;
+          display: table;
+          padding: 0 0 8em 0;
+        }
+        
+        .container td, .container th {
+            padding-bottom: 2%;
+            padding-top: 2%;
+          padding-left:2%;  
+        }
+        
+        /* Background-color of the odd rows */
+        .container tr:nth-child(odd) {
+            background-color: #323C50;
+        }
+        
+        /* Background-color of the even rows */
+        .container tr:nth-child(even) {
+            background-color: #2C3446;
+        }
+        
+        .container th {
+            background-color: #1F2739;
+        }
+        
+        .container td:first-child { color: #FB667A; }
+        
+        .container tr:hover {
+           background-color: #464A52;
+        -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+             -moz-box-shadow: 0 6px 6px -6px #0E1119;
+                  box-shadow: 0 6px 6px -6px #0E1119;
+        }
+        
+        .container td:hover {
+          background-color: #FFF842;
+          color: #403E10;
+          font-weight: bold;
+          
+          box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+          transform: translate3d(6px, -6px, 0);
+          
+          transition-delay: 0s;
+            transition-duration: 0.4s;
+            transition-property: all;
+          transition-timing-function: line;
+        }
+        
+        @media (max-width: 800px) {
+        .container td:nth-child(4),
+        .container th:nth-child(4) { display: none; }
+        }
+
+
+        
+        /* 15 */
+
+        button {
+            margin: 20px;
+          }
+          .custom-btn {
+            width: 130px;
+            height: 40px;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px 25px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+             box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+             7px 7px 20px 0px rgba(0,0,0,.1),
+             4px 4px 5px 0px rgba(0,0,0,.1);
+            outline: none;
+          }
+        .btn-15 {
+          background: #b621fe;
+          border: none;
+          z-index: 1;
+        }
+        .btn-15:after {
+          position: absolute;
+          content: "";
+          width: 0;
+          height: 100%;
+          top: 0;
+          right: 0;
+          z-index: -1;
+          background-color: #663dff;
+          border-radius: 5px;
+           box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+           7px 7px 20px 0px rgba(0,0,0,.1),
+           4px 4px 5px 0px rgba(0,0,0,.1);
+          transition: all 0.3s ease;
+        }
+        .btn-15:hover {
+          color: #fff;
+        }
+        .btn-15:hover:after {
+          left: 0;
+          width: 100%;
+        }
+        .btn-15:active {
+          top: 2px;
+        }
+        
+        
+
+    </style>
+</head>
+<body>
+
+    
+    <button class="custom-btn btn-15" id="print-button">Print</button>
+    <!-- Download CSV Button -->
+    <button class="custom-btn btn-15" id="download-csv-button">Get CSV</button>
+
+    <h1>Prediction Results</h1>
+<h2>Data Display</h2>
+
+    <table border="5px" class="container" id="table-to-csv">
+        <thead>
+            <tr>
+                <th>Enrollment No.</th>
+                <th>Attendance</th>
+                <th>CGPA</th>
+                <th>performance</th>
+                <th>category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for index, row in predictions.iterrows %}
+                <tr>
+                    <td>{{ row.ENROLLMENTNUMBER }}</td>
+                    <td>{{ row.Attendance }}</td>
+                    <td>{{ row.CGPA }}</td>
+                    <td>{{ row.performance }}</td>
+                    <td>{{ row.category }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const printButton = document.getElementById('print-button');
+        const downloadCsvButton = document.getElementById('download-csv-button');
+    
+        // Function to trigger printing
+        printButton.addEventListener('click', function () {
+            window.print(); // Open the browser's print dialog
+        });
+    
+
+
+        //trigger csv generation
+
+        downloadCsvButton.addEventListener('click', function () {
+          const tableToCsv = document.getElementById('table-to-csv');
+  
+          // Function to convert HTML table to CSV string
+          function tableToCsvString(table) {
+              const rows = Array.from(table.querySelectorAll('tr'));
+              return rows
+                  .map((row) => {
+                      const cells = Array.from(row.querySelectorAll('th, td'));
+                      return cells.map((cell) => cell.innerText).join(',');
+                  })
+                  .join('\n');
+          }
+  
+          const csvData = tableToCsvString(tableToCsv);
+  
+          // Create a CSV blob
+          const csvBlob = new Blob([csvData], { type: 'text/csv' });
+  
+          // Create a download link and trigger the download
+          const downloadLink = document.createElement('a');
+          downloadLink.href = window.URL.createObjectURL(csvBlob);
+          downloadLink.download = 'table_data.csv';
+          downloadLink.click();
+      });
+       
+    });
+    
+</script>
+
+</body>
+</html>
